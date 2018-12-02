@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        button = (Button) findViewById(R.id.button);
+        button = (Button) findViewById(R.id.search_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
