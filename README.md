@@ -1,5 +1,13 @@
 # Ciryl
+
+## A music app
+
 App developed by Albert Li and Andrew Lin
-CS 125 Final Project
+
+## Features
+
+Allows users to search for any song
+
+Retrieves back song information, artist details, lyrics, etc.
 
 
