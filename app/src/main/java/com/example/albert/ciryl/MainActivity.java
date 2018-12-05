@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     public void openMusic_Identify() {
         Intent intent = new Intent(this, Music_Identify.class);
         startActivity(intent);
