@@ -18,6 +18,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +34,13 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        button = (Button) findViewById(R.id.search_button);
+        button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openMusic_Identify();
             }
         });
-       // button.setOnKeyListener(());
     }
 
     public void openMusic_Identify() {

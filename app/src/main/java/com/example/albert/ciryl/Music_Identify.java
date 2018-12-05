@@ -4,33 +4,44 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
 
 public class Music_Identify extends AppCompatActivity {
-    EditText text;
-    Button back_button;
+    Button artistButton, songButton, lyricButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_music);
+        setContentView(R.layout.activity_music__identify);
 
-       // text =  (EditText) findViewById(R.id.search_text);
-        System.out.print("smh");
-        //System.out.println(text.getText());
+        artistButton = findViewById(R.id.artistSearch);
+        songButton = findViewById(R.id.songSearch);
+        lyricButton = findViewById(R.id.lyricSearch);
 
-        back_button = (Button) findViewById(R.id.back_button);
-        back_button.setOnClickListener(new View.OnClickListener() {
+        artistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Music_Identify.this, MainActivity.class);
-                startActivity(intent);
-                //openMainActivity();
+                openIdentifyByArtist();
+            }
+        });
+        songButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openIdentifyBySongOrLyric();
+            }
+        });
+        lyricButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openIdentifyBySongOrLyric();
             }
         });
     }
-    public void openMainActivity() {
-        Intent intent = new Intent(Music_Identify.this, MainActivity.class);
+    public void openIdentifyByArtist() {
+        Intent intent = new Intent(this, FindByArtist.class);
+        startActivity(intent);
+    }
+    public void openIdentifyBySongOrLyric() {
+        Intent intent = new Intent(this, FindBySongOrLyric.class);
         startActivity(intent);
     }
 }
