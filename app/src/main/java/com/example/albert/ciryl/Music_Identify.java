@@ -23,12 +23,12 @@ public class Music_Identify extends AppCompatActivity {
                 openIdentifyByArtist();
             }
         });
-       /* songButton.setOnClickListener(new View.OnClickListener() {
+        songButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openIdentifyBySongOrLyric();
+                openIdentifyByLyricOrName();
             }
-        });*/
+        });
         lyricButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

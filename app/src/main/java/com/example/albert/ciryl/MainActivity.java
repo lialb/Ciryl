@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        button = findViewById(R.id.button);
+        button = findViewById(R.id.search_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
