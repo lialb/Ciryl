@@ -19,8 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Music_Identify" />
-        <activity android:name=".Music"></activity>
+        <activity android:name=".Music_Identify"></activity>
+        <activity android:name=".FindByArtist"></activity>
+        <activity android:name=".FindByLyricOrName"></activity>
     </application>
 
 </manifest>

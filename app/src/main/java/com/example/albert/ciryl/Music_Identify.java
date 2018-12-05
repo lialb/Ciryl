@@ -23,25 +23,28 @@ public class Music_Identify extends AppCompatActivity {
                 openIdentifyByArtist();
             }
         });
-        songButton.setOnClickListener(new View.OnClickListener() {
+       /* songButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openIdentifyBySongOrLyric();
             }
-        });
+        });*/
         lyricButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openIdentifyBySongOrLyric();
+                openIdentifyByLyricOrName();
             }
         });
+    }
+    public void closeMusicIdentify() {
+        this.finish();
     }
     public void openIdentifyByArtist() {
         Intent intent = new Intent(this, FindByArtist.class);
         startActivity(intent);
     }
-    public void openIdentifyBySongOrLyric() {
-        Intent intent = new Intent(this, FindBySongOrLyric.class);
+    public void openIdentifyByLyricOrName() {
+        Intent intent = new Intent(this, FindByLyricOrName.class);
         startActivity(intent);
     }
 }

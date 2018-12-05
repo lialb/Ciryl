@@ -2,12 +2,11 @@ package com.example.albert.ciryl;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 
-public class FindByArtist extends Activity {
+public class FindByLyricOrName extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_by_artist);
+        setContentView(R.layout.activity_find_by_lyric_or_name);
     }
 }
