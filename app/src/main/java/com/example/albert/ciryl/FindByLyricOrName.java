@@ -45,7 +45,6 @@ public class FindByLyricOrName extends Activity {
     //Button button;
     private TextInputLayout userInput;
 
-    public static String track_id = "71676331";
     public static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
 
@@ -78,7 +77,7 @@ public class FindByLyricOrName extends Activity {
 
 
                 Log.d(TAG, "Start API button clicked");
-                startAPICall();
+                firstAPICall();
             }
         });
     }
@@ -96,10 +95,53 @@ public class FindByLyricOrName extends Activity {
         }
         return url;
     }
+    private String getSearchTrackIDURL() {
+        String name = userInput.getEditText().getText().toString().trim();
+        name = trimSearch(name);
+        String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + name + "&quorum_factor=1&apikey=" + apiKey;
+        return url;
+    }
+    void firstAPICall() {
+        try {
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                    Request.Method.GET, getSearchTrackIDURL(),
+                    null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(final JSONObject response) {
+                            Log.d(TAG, response.toString());
+                            try {
+                                String track_id = response.getJSONObject("message").getJSONObject("body").getJSONArray("track_list")
+                                        .getJSONObject(0).getJSONObject("track").getString("track_id");
+                                textView.setText(track_id);
+                                startSecondAPICall(track_id);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(final VolleyError error) {
+                    Log.w(TAG, error.toString());
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("apiKey", "55209121330a9e50d5bc48132c055b8d");
+                    Log.d(TAG, params.toString());
+                    return params;
+                }
+            };
+            requestQueue.add(jsonObjectRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Make an API call.
      */
-    void startAPICall() {
+    void startSecondAPICall(String track_id) {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                     Request.Method.GET,
@@ -111,16 +153,16 @@ public class FindByLyricOrName extends Activity {
                         public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
                             String searchParameters = userInput.getEditText().getText().toString().trim();
-                            searchParameters = "smt" + trimSearch(searchParameters);
+                            searchParameters = trimSearch(searchParameters);
                             textView.setText(searchParameters);
-                           /* try {
-                                JSONObject lyric = response.getJSONObject("lyrics_body");
-                               // String searchParameters = userInput.getEditText().getText().toString().trim();
-                                searchParameters = "smt" + trimSearch(searchParameters);
-                                textView.setText(searchParameters);//getString("lyrics_body"));
+                            try {
+                                String lyric = response.getJSONObject("message").getJSONObject("body").getJSONObject("lyrics").getString("lyrics_body");
+                                // String searchParameters = userInput.getEditText().getText().toString().trim();
+                                searchParameters = trimSearch(searchParameters);
+                                textView.setText(searchParameters + lyric);//getString("lyrics_body"));
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            }*/
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -130,7 +172,7 @@ public class FindByLyricOrName extends Activity {
             }) {
                 @Override
                 public Map<String, String> getHeaders() {
-                    Map<String, String>  params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<String, String>();
                     params.put("apiKey", "55209121330a9e50d5bc48132c055b8d");
                     Log.d(TAG, params.toString());
                     return params;
@@ -139,10 +181,6 @@ public class FindByLyricOrName extends Activity {
             requestQueue.add(jsonObjectRequest);
         } catch (Exception e) {
             e.printStackTrace();
-        }/* finally {
-            textView.setText("smt");
-        }*/
-
+        }
     }
-
 }
