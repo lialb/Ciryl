@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MusicIdentifyPage" />
-        <activity android:name=".FindByArtist" />
+        <activity android:name=".SearchFunction" />
         <activity android:name=".FindByLyrics" />
         <activity android:name=".FindBySongTitle" />
         <activity android:name=".LoadSongList" />

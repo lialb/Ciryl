@@ -41,7 +41,7 @@ public class MusicIdentifyPage extends AppCompatActivity {
     }
 
     public void openIdentifyByArtist() {
-        Intent intent = new Intent(this, FindByArtist.class);
+        Intent intent = new Intent(this, SearchFunction.class);
         startActivity(intent);
     }
     public void openIdentifyByLyricOrName() {

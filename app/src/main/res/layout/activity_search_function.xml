@@ -20,7 +20,7 @@
         android:id="@+id/titleSearchInput"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Input Song Name"
+        android:hint="Input lyrics, song name, etc."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -31,7 +31,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="800dp"
             android:layout_height="wrap_content"
-            android:hint="Input Song Name"
+            android:hint="Input lyrics, song name, etc."
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -39,7 +39,7 @@
         android:id="@+id/artistSearchInput"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Input Artist Name"
+        android:hint="Input Artist Name... or not"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
@@ -61,8 +61,33 @@
         android:src="@drawable/ciryl_logo_smaller"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.012" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="386dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ciryl_notes_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.657" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="314dp"
+        android:layout_height="41dp"
+        android:text="You can search using both fields or just a single field (or none!)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.361" />
 
 </android.support.constraint.ConstraintLayout>

@@ -44,8 +44,8 @@ public class LoadSongList extends Activity{
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        title = FindByArtist.getSongTitle();
-        artist = FindByArtist.getSongArtist();
+        title = SearchFunction.getSongTitle();
+        artist = SearchFunction.getSongArtist();
         // Set up a queue for our Volley requests
         requestQueue = Volley.newRequestQueue(this);
         // Load the main layout for our activity

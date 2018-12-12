@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class FindByArtist extends Activity {
+public class SearchFunction extends Activity {
     private static final String TAG = "Ciryl";
     private static String songName = "";
     private static String artistName = "";
@@ -17,7 +17,7 @@ public class FindByArtist extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_by_artist);
+        setContentView(R.layout.activity_search_function);
 
         final Button search = findViewById(R.id.SearchButton);
         search.setOnClickListener(new View.OnClickListener() {

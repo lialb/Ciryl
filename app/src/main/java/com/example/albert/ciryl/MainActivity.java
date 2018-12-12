@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void openMusic_Identify() {
-        Intent intent = new Intent(this, MusicIdentifyPage.class);
+        Intent intent = new Intent(this, SearchFunction.class);
         startActivity(intent);
     }
     @Override
