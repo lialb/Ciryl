@@ -17,7 +17,7 @@ import java.util.Random;
 
 public class RandomSong extends Activity {
     private String track_id = "";
-    private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
+    private static String apiKey = MainActivity.API_KEY;
     private static final String TAG = "Ciryl";
     TextView textView;
     private static RequestQueue requestQueue;

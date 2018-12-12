@@ -16,6 +16,7 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity {
+    public static final String API_KEY = "35f35de71ef6735af7c8bb8d2c6acb36";
     Button searchButton, random;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -39,7 +39,7 @@ public class FindByLyrics extends Activity {
     TextView textView;
     private TextInputLayout userInput;
 
-    public static String apiKey = "55209121330a9e50d5bc48132c055b8d";
+    public static String apiKey = MainActivity.API_KEY;
     private static final String TAG = "Ciryl";
 
     /** Request queue for our network requests. */

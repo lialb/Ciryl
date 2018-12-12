@@ -35,7 +35,7 @@ import android.text.method.ScrollingMovementMethod;
 public class FindBySongTitle extends Activity{
     TextView textView;
     private TextInputLayout userInput;
-    public static String apiKey = "55209121330a9e50d5bc48132c055b8d";
+    public static String apiKey = MainActivity.API_KEY;
     private static final String TAG = "Ciryl";
     Button nextButton;
     private int songIndex = 0;

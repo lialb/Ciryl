@@ -26,7 +26,7 @@ import java.util.Map;
  */
 public class LoadSongList extends Activity{
     private static RequestQueue requestQueue;
-    private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
+    private static String apiKey = MainActivity.API_KEY;
     private static final String TAG = "Ciryl";
     private String[] track_info;
     private Button[] buttonList;
@@ -123,7 +123,7 @@ public class LoadSongList extends Activity{
         String songArtist = artist.trim();
         songArtist = trimSearch(songArtist);
         songTitle = trimSearch(songTitle);
-        String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + songTitle + "&q_artist=" + songArtist + "&quorum_factor=1&apikey=" + apiKey;
+        String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + songTitle + "&q_artist=" + songArtist + "&f_has_lyrics=1&quorum_factor=1&apikey=" + apiKey;
         return url;
     }
 
