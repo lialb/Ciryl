@@ -1,4 +1,13 @@
 package com.example.albert.ciryl;
+/**
+ *
+ * NOTE: THIS CLASS IS NOT IN USE IN THE CURRENT APP. MAY BE USED IN FUTURE DEVELOPMENT
+ *
+ *
+ *
+ *
+ *
+ */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

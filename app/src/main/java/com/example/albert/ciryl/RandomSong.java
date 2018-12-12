@@ -15,14 +15,13 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-
-public class LoadLyricPage extends Activity {
+public class RandomSong extends Activity {
     private String track_id = "";
     private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
     TextView textView;
-    //Button generate;
     private static RequestQueue requestQueue;
 
     @Override
@@ -31,13 +30,21 @@ public class LoadLyricPage extends Activity {
 
         requestQueue = Volley.newRequestQueue(this);
         setContentView(R.layout.activity_load_lyric_page);
-        track_id = LoadSongList.getTrackId();
+
         textView = (TextView) findViewById(R.id.textView);
         textView.setText("Home page" + track_id);
+        call();
+    }
+    Random random = new Random();
 
+    /**
+     * A random number generator generates a which gives us a random track id, giving us a random song
+     */
+    private void call() {
+        int x = random.nextInt(20000000) + 100000000;
+        track_id = Integer.toString(x);
         APICall();
     }
-
     /**
      * Trim user search parameters to format for search function via API call.
      * @return formatted URL for query
@@ -66,18 +73,20 @@ public class LoadLyricPage extends Activity {
                             try {
                                 textView.setText(response.toString());
                                 String lyric = response.getJSONObject("message").getJSONObject("body").getJSONObject("lyrics").getString("lyrics_body");
-                                textView.setText(lyric+ " \n" + track_id);
+                                textView.setText(lyric);
                                 if (lyric.length() == 0) {
                                     textView.setText("No results found! Please check your search.");
                                 }
                             } catch (JSONException e) {
-                                textView.setText("Lyrics aren't found! Try a different song");
+                                call();
+                                textView.setText("Lyrics aren't found! Finding a different song: "+ track_id);
                                 e.printStackTrace();
                             }
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(final VolleyError error) {
+
                     Log.w(TAG, error.toString());
                 }
             }) {

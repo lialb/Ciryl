@@ -1,5 +1,13 @@
 package com.example.albert.ciryl;
-
+/**
+ *
+ * NOTE: THIS CLASS IS NOT IN USE IN THE CURRENT APP. MAY BE USED IN FUTURE DEVELOPMENT
+ *
+ *
+ *
+ *
+ *
+ */
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;

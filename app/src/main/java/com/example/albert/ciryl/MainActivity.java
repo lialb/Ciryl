@@ -12,11 +12,12 @@ import android.widget.Button;
 
 /**
  * CS 125 Final Project made by Albert Li and Andrew Lin
- * "Ciryl" is an app which utilizes a lyric api to display lyrics of songs when they are heard via phone
+ * "Ciryl" is an app which utilizes a lyric api to display lyrics of songs when they searched for
  */
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button searchButton, random;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,23 +26,30 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        button = findViewById(R.id.search_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        searchButton = findViewById(R.id.search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMusic_Identify();
+                openSearchFunction();
+            }
+        });
+        random = findViewById(R.id.random);
+        random.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openRandomSong();
             }
         });
     }
-    public void openMusic_Identify() {
+    /**
+     * Opens up a new class and new activity page.
+     */
+    public void openRandomSong() {
+        Intent intent = new Intent(this, RandomSong.class);
+        startActivity(intent);
+    }
+
+    public void openSearchFunction() {
         Intent intent = new Intent(this, SearchFunction.class);
         startActivity(intent);
     }

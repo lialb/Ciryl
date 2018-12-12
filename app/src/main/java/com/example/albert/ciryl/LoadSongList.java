@@ -32,13 +32,10 @@ public class LoadSongList extends Activity{
     private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
 
-
-    private Button next;
     private String[] track_info;
     private Button[] buttons;
     private String[] track_id;
     private static String track_ID = "";
-
     private String title;
     private String artist;
     @Override
@@ -57,11 +54,13 @@ public class LoadSongList extends Activity{
         APICall();
     }
 
-
+    /**
+     * This function creates a table of new buttons for user to press that shows the track title
+     * and artist of the song.
+     */
     private void createButtons() {
-
         TableLayout table = (TableLayout) findViewById(R.id.tableForButtons);
-        for (int col = 0; col < buttons.length; col++){
+        for (int i = 0; i < buttons.length; i++){
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
@@ -69,39 +68,48 @@ public class LoadSongList extends Activity{
                     1.0f));
             table.addView(tableRow);
 
-            final int FINAL_COL = col;
+            final int newButton = i;
             Button button = new Button(this);
             button.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.MATCH_PARENT,
                     1.0f));
 
-            button.setText("" + track_info[col]);
-
+            button.setText("" + track_info[i]);
             // Make text not clip on small buttons
             button.setPadding(0, 0, 0, 0);
-
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    track_ID = track_id[FINAL_COL];
+                    track_ID = track_id[newButton];
                     buttonClicked();
                 }
             });
             tableRow.addView(button);
-            buttons[col] = button;
+            buttons[i] = button;
         }
     }
 
+    /**
+     * Opens up new page to display the lyrics the user has chosen.
+     */
     private void buttonClicked() {
         lockButtonSizes();
         Intent intent = new Intent(this, LoadLyricPage.class);
         startActivity(intent);
     }
+
+    /**
+     * helper function to get the track_ID variable
+     * @return
+     */
     public static String getTrackId() {
         return track_ID;
     }
 
+    /**
+     * self-explanatory
+     */
     private void lockButtonSizes() {
         for (int i = 0; i < buttons.length; i++) {
             Button button = buttons[i];
@@ -115,7 +123,6 @@ public class LoadSongList extends Activity{
             button.setMaxHeight(height);
         }
     }
-
     /**
      * Formats the user search query to fit in the url in the API Call
      * @return formatted url in the API call
