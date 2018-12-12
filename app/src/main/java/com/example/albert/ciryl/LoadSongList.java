@@ -1,39 +1,35 @@
 package com.example.albert.ciryl;
+
 import android.app.Activity;
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import android.widget.TableLayout;
 import android.widget.TableRow;
-
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * This class generates many buttons for the user to choose based on song title and artist.
+ */
 public class LoadSongList extends Activity{
     private static RequestQueue requestQueue;
     private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
-
     private String[] track_info;
-    private Button[] buttons;
+    private Button[] buttonList;
     private String[] track_id;
     private static String track_ID = "";
     private String title;
@@ -47,10 +43,9 @@ public class LoadSongList extends Activity{
         requestQueue = Volley.newRequestQueue(this);
         // Load the main layout for our activity
         setContentView(R.layout.activity_load_songs_list);
-
-        buttons = new Button[8];
-        track_info = new String[buttons.length];
-        track_id = new String[buttons.length];
+        buttonList = new Button[8];
+        track_info = new String[buttonList.length];
+        track_id = new String[buttonList.length];
         APICall();
     }
 
@@ -60,21 +55,19 @@ public class LoadSongList extends Activity{
      */
     private void createButtons() {
         TableLayout table = (TableLayout) findViewById(R.id.tableForButtons);
-        for (int i = 0; i < buttons.length; i++){
+        for (int i = 0; i < buttonList.length; i++){
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(
                     TableLayout.LayoutParams.MATCH_PARENT,
                     TableLayout.LayoutParams.MATCH_PARENT,
                     1.0f));
             table.addView(tableRow);
-
             final int newButton = i;
             Button button = new Button(this);
             button.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.MATCH_PARENT,
                     1.0f));
-
             button.setText("" + track_info[i]);
             // Make text not clip on small buttons
             button.setPadding(0, 0, 0, 0);
@@ -86,10 +79,9 @@ public class LoadSongList extends Activity{
                 }
             });
             tableRow.addView(button);
-            buttons[i] = button;
+            buttonList[i] = button;
         }
     }
-
     /**
      * Opens up new page to display the lyrics the user has chosen.
      */
@@ -98,7 +90,6 @@ public class LoadSongList extends Activity{
         Intent intent = new Intent(this, LoadLyricPage.class);
         startActivity(intent);
     }
-
     /**
      * helper function to get the track_ID variable
      * @return
@@ -111,8 +102,8 @@ public class LoadSongList extends Activity{
      * self-explanatory
      */
     private void lockButtonSizes() {
-        for (int i = 0; i < buttons.length; i++) {
-            Button button = buttons[i];
+        for (int i = 0; i < buttonList.length; i++) {
+            Button button = buttonList[i];
 
             int width = button.getWidth();
             button.setMinWidth(width);
@@ -135,6 +126,12 @@ public class LoadSongList extends Activity{
         String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + songTitle + "&q_artist=" + songArtist + "&quorum_factor=1&apikey=" + apiKey;
         return url;
     }
+
+    /**
+     * Helper function to trim excess spaces.
+     * @param input what the user used to search
+     * @return formatted and trimmed parameter for query
+     */
     private String trimSearch(String input) {
         String url = "";
         String[] arr = input.split(" ");
@@ -149,6 +146,10 @@ public class LoadSongList extends Activity{
         }
         return url;
     }
+
+    /**
+     * API call to generate a list of song titles.
+     */
     void APICall() {
         try {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(

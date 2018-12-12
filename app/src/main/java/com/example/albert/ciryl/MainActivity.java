@@ -17,8 +17,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button searchButton, random;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +40,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     /**
-     * Opens up a new class and new activity page.
+     * Opens up a new class and new activity page. This one gets a random song
      */
     public void openRandomSong() {
         Intent intent = new Intent(this, RandomSong.class);
         startActivity(intent);
     }
 
+    /**
+     * Opens up page for user input
+     */
     public void openSearchFunction() {
         Intent intent = new Intent(this, SearchFunction.class);
         startActivity(intent);
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

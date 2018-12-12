@@ -8,6 +8,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Creates a page to get user input
+ */
+
 public class SearchFunction extends Activity {
     private static final String TAG = "Ciryl";
     private static String songName = "";
@@ -18,7 +22,6 @@ public class SearchFunction extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_function);
-
         final Button search = findViewById(R.id.SearchButton);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,12 +35,25 @@ public class SearchFunction extends Activity {
             }
         });
     }
+
+    /**
+     * Helper function to get song title
+     * @return song title
+     */
     public static String getSongTitle() {
         return songName;
     }
+
+    /**
+     * Helper function to get song artist
+     * @return song artist
+     */
     public static String getSongArtist() {
         return artistName;
     }
+    /**
+     * Opens up new page
+     */
     public void openLoadSong() {
         Intent intent = new Intent(this, LoadSongList.class);
         startActivity(intent);

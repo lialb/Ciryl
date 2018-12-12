@@ -1,5 +1,4 @@
 package com.example.albert.ciryl;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,17 +11,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class generates lyrics based on what the user pressed in preceding page
+ */
 
 public class LoadLyricPage extends Activity {
     private String track_id = "";
     private static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
     TextView textView;
-    //Button generate;
     private static RequestQueue requestQueue;
 
     @Override
@@ -37,7 +37,6 @@ public class LoadLyricPage extends Activity {
 
         APICall();
     }
-
     /**
      * Trim user search parameters to format for search function via API call.
      * @return formatted URL for query
@@ -47,7 +46,6 @@ public class LoadLyricPage extends Activity {
                 "rmat=json&callback=callback&track_id=" + track_id + "&apikey=" + apiKey;
         return url;
     }
-
     /**
      * API call to display lyrics based on the button user presses
      */

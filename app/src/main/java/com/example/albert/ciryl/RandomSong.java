@@ -1,5 +1,4 @@
 package com.example.albert.ciryl;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -24,13 +22,15 @@ public class RandomSong extends Activity {
     TextView textView;
     private static RequestQueue requestQueue;
 
+    /**
+     * loads new page, creates a textview, calls on the API for a random song.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestQueue = Volley.newRequestQueue(this);
         setContentView(R.layout.activity_load_lyric_page);
-
         textView = (TextView) findViewById(R.id.textView);
         textView.setText("Home page" + track_id);
         call();
@@ -56,7 +56,8 @@ public class RandomSong extends Activity {
     }
 
     /**
-     * API call to display lyrics based on the button user presses
+     * API call to display lyrics based on the button user presses. If the generated track-id doesn't
+     * generate a song, a new number is generated and it tries again.
      */
     void APICall() {
         try {
