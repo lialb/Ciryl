@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.albert.ciryl">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,9 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Music_Identify"></activity>
-        <activity android:name=".FindByArtist"></activity>
-        <activity android:name=".FindByLyricOrName"></activity>
+        <activity android:name=".MusicIdentifyPage" />
+        <activity android:name=".FindByArtist" />
+        <activity android:name=".FindByLyrics" />
+        <activity android:name=".FindBySongTitle" />
+        <activity android:name=".LoadSongList" />
+        <activity android:name=".LoadLyricPage" />
     </application>
 
 </manifest>

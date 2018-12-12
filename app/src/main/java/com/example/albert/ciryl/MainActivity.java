@@ -1,5 +1,4 @@
 package com.example.albert.ciryl;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void openMusic_Identify() {
-        Intent intent = new Intent(this, Music_Identify.class);
+        Intent intent = new Intent(this, MusicIdentifyPage.class);
         startActivity(intent);
     }
     @Override
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

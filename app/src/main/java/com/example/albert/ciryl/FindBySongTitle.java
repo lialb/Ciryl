@@ -1,86 +1,79 @@
 package com.example.albert.ciryl;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.VoiceInteractor;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EdgeEffect;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import android.support.v7.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
 import com.android.volley.toolbox.JsonObjectRequest;
-//import com.google.gson.Gson;
-//import com.google.gson.JsonObject;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import android.text.method.ScrollingMovementMethod;
 
-import javax.net.ssl.HttpsURLConnection;
-
-public class FindByLyricOrName extends Activity {
+public class FindBySongTitle extends Activity{
     TextView textView;
-    //Button button;
     private TextInputLayout userInput;
-
     public static String apiKey = "55209121330a9e50d5bc48132c055b8d";
     private static final String TAG = "Ciryl";
-
+    Button nextButton;
+    private int songIndex = 0;
     /** Request queue for our network requests. */
     private static RequestQueue requestQueue;
+
     /**
      * Run when our activity comes into view.
-     *
      * @param savedInstanceState state that was saved by the activity last time it was paused
      */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Set up a queue for our Volley requests
         requestQueue = Volley.newRequestQueue(this);
-
         // Load the main layout for our activity
-        setContentView(R.layout.activity_find_by_lyric_or_name);
+        setContentView(R.layout.activity_find_by_name_only);
 
         textView = (TextView) findViewById(R.id.textView);
-
+        textView.setMovementMethod(new ScrollingMovementMethod());
         userInput = findViewById(R.id.userSearchInput);
+        nextButton = findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                songIndex++;
+                firstAPICall();
+            }
+        });
+        songIndex = 0;
 
         // Attach the handler to our UI button
         final Button startAPICall = findViewById(R.id.SearchButton);
         startAPICall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-
-
                 Log.d(TAG, "Start API button clicked");
                 firstAPICall();
             }
         });
     }
+    /**
+     * Formats the user query to fit in the URL signature. Removes excess spaces.
+     * @param input user search input
+     * @return URL parameter
+     */
     private String trimSearch(String input) {
         String url = "";
         String[] arr = input.split(" ");
@@ -95,8 +88,13 @@ public class FindByLyricOrName extends Activity {
         }
         return url;
     }
+    /**
+     * Formats the user search query to fit in the url in the API Call
+     * @return formatted url in the API call
+     */
     private String getSearchTrackIDURL() {
         String name = userInput.getEditText().getText().toString().trim();
+        String artist = "";
         name = trimSearch(name);
         String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + name + "&quorum_factor=1&apikey=" + apiKey;
         return url;
@@ -111,9 +109,18 @@ public class FindByLyricOrName extends Activity {
                         public void onResponse(final JSONObject response) {
                             Log.d(TAG, response.toString());
                             try {
+                                int length = response.getJSONObject("message").getJSONObject("body").getJSONArray("track_list").length();
+                                if (songIndex >= length) {
+                                    songIndex = 0;
+                                }
                                 String track_id = response.getJSONObject("message").getJSONObject("body").getJSONArray("track_list")
-                                        .getJSONObject(0).getJSONObject("track").getString("track_id");
-                                textView.setText(track_id);
+                                        .getJSONObject(songIndex).getJSONObject("track").getString("track_id");
+                                if (track_id.length() > 0) {
+                                    textView.setText(track_id);
+                                } else {
+                                    textView.setText("No results found! Song may not be in the current database. Please" +
+                                            " check spelling and try again.");
+                                }
                                 startSecondAPICall(track_id);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -154,12 +161,10 @@ public class FindByLyricOrName extends Activity {
                             Log.d(TAG, response.toString());
                             String searchParameters = userInput.getEditText().getText().toString().trim();
                             searchParameters = trimSearch(searchParameters);
-                            textView.setText(searchParameters);
                             try {
                                 String lyric = response.getJSONObject("message").getJSONObject("body").getJSONObject("lyrics").getString("lyrics_body");
-                                // String searchParameters = userInput.getEditText().getText().toString().trim();
                                 searchParameters = trimSearch(searchParameters);
-                                textView.setText(searchParameters + lyric);//getString("lyrics_body"));
+                                textView.setText(lyric);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -184,3 +189,4 @@ public class FindByLyricOrName extends Activity {
         }
     }
 }
+

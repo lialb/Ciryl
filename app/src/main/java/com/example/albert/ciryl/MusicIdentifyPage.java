@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Music_Identify extends AppCompatActivity {
+public class MusicIdentifyPage extends AppCompatActivity {
     Button artistButton, songButton, lyricButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class Music_Identify extends AppCompatActivity {
         songButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openIdentifyByLyricOrName();
+                openIdentifyByNameOnly();
             }
         });
         lyricButton.setOnClickListener(new View.OnClickListener() {
@@ -39,12 +39,17 @@ public class Music_Identify extends AppCompatActivity {
     public void closeMusicIdentify() {
         this.finish();
     }
+
     public void openIdentifyByArtist() {
         Intent intent = new Intent(this, FindByArtist.class);
         startActivity(intent);
     }
     public void openIdentifyByLyricOrName() {
-        Intent intent = new Intent(this, FindByLyricOrName.class);
+        Intent intent = new Intent(this, FindByLyrics.class);
+        startActivity(intent);
+    }
+    public void openIdentifyByNameOnly() {
+        Intent intent = new Intent(this, FindBySongTitle.class);
         startActivity(intent);
     }
 }
