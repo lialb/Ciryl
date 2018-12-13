@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,6 +36,7 @@ public class LoadSongList extends Activity{
     private static String track_ID = "";
     private String title;
     private String artist;
+    private TextView textView;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class LoadSongList extends Activity{
         requestQueue = Volley.newRequestQueue(this);
         // Load the main layout for our activity
         setContentView(R.layout.activity_load_songs_list);
+        textView = (TextView) findViewById(R.id.textView4);
         buttonList = new Button[8];
         track_info = new String[buttonList.length];
         track_id = new String[buttonList.length];
@@ -171,6 +175,7 @@ public class LoadSongList extends Activity{
                                 }
                                 createButtons();
                             } catch (JSONException e) {
+                                textView.setText("No results found! Try modifying your search");
                                 e.printStackTrace();
                             }
                         }
