@@ -33,7 +33,8 @@ public class LoadLyricPage extends Activity {
         setContentView(R.layout.activity_load_lyric_page);
         track_id = LoadSongList.getTrackId();
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText("Home page" + track_id);
+        textView.setText("Loading...");
+        //textView.setText("Home page" + track_id);
 
         APICall();
     }
@@ -59,11 +60,12 @@ public class LoadLyricPage extends Activity {
                         @Override
                         public void onResponse(final JSONObject response) {
 
-                            textView.setText(response.toString());
+                            //textView.setText(response.toString());
                             Log.d(TAG, response.toString());
                             try {
                                 textView.setText(response.toString());
                                 String lyric = response.getJSONObject("message").getJSONObject("body").getJSONObject("lyrics").getString("lyrics_body");
+
                                 textView.setText(lyric+ " \n" + track_id);
                                 if (lyric.length() == 0) {
                                     textView.setText("No results found! Please check your search.");

@@ -36,12 +36,14 @@ public class LoadSongList extends Activity{
     private static String track_ID = "";
     private String title;
     private String artist;
+    private String lyric;
     private TextView textView;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         title = SearchFunction.getSongTitle();
         artist = SearchFunction.getSongArtist();
+        lyric = SearchFunction.getSongLyric();
         // Set up a queue for our Volley requests
         requestQueue = Volley.newRequestQueue(this);
         // Load the main layout for our activity
@@ -125,9 +127,11 @@ public class LoadSongList extends Activity{
     private String getSearchTrackIDURL() {
         String songTitle = title.trim();
         String songArtist = artist.trim();
+        String songLyric = lyric.trim();
         songArtist = trimSearch(songArtist);
         songTitle = trimSearch(songTitle);
-        String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + songTitle + "&q_artist=" + songArtist + "&f_has_lyrics=1&quorum_factor=1&apikey=" + apiKey;
+        songLyric = trimSearch(songLyric);
+        String url = "https://api.musixmatch.com/ws/1.1/track.search?format=json&callback=callback&q_track=" + songTitle + "&q_artist=" + songArtist + "&q_lyrics=" + songLyric + "&f_has_lyrics=1&quorum_factor=1&apikey=" + apiKey;
         return url;
     }
 

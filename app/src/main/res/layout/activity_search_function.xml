@@ -22,7 +22,7 @@
         android:id="@+id/titleSearchInput"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Input lyrics, song name, etc."
+        android:hint="Input Song Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,7 +33,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="800dp"
             android:layout_height="wrap_content"
-            android:hint="Input lyrics, song name, etc."
+            android:hint="Input Song Name"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -41,7 +41,7 @@
         android:id="@+id/artistSearchInput"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:hint="Input Artist Name... or not"
+        android:hint="Input Artist Name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
@@ -53,6 +53,25 @@
             android:layout_width="800dp"
             android:layout_height="wrap_content"
             android:hint="Input Artist Name"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/lyricSearchInput"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:hint="Input Lyric"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.436">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="800dp"
+            android:layout_height="wrap_content"
+            android:hint="Input Lyric"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -75,21 +94,8 @@
         android:text="You can search using both fields or just a single field (or none!)"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.361" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="303dp"
-        android:layout_height="204dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.592"
-        app:srcCompat="@drawable/ciryl_logo_no_background" />
+        app:layout_constraintVertical_bias="0.582" />
 
 </android.support.constraint.ConstraintLayout>

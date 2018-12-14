@@ -79,8 +79,9 @@ public class RandomSong extends Activity {
                                     textView.setText("No results found! Please check your search.");
                                 }
                             } catch (JSONException e) {
+                                textView.setText("Loading...");
                                 call();
-                                textView.setText("Lyrics aren't found! Finding a different song: "+ track_id);
+                                //textView.setText("Lyrics aren't found! Finding a different song: "+ track_id);
                                 e.printStackTrace();
                             }
                         }
